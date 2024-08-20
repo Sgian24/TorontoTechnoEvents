@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import {getDocs, collection} from "firebase/firestore"; 
-
+import Listing from "../Components/Listing";
 
 const Home = () => {
 
-  const [events, setEvents] = useState("")
+  const [events, setEvents] = useState([])
 
   useEffect(() => {
     const testing = async () => {
@@ -17,8 +17,12 @@ const Home = () => {
     testing(); 
   },[])
 
+  console.log("events", events);
+
   return (
     <>
+    <h1 className="text-center mt-5">Toronto Techno Events</h1>
+    <Listing events={events}/>
     </>
   );
 }
