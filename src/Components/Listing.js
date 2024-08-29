@@ -1,16 +1,23 @@
+import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Listing = ({events}) => {
+const Listing = ({events, venues}) => {
 
+    const excludedVenues = ["Standard Time", "Sounds Good", "Bambi's", "Cafeteria", ]
     const dates = []
     const eventss = events.sort((a,b) => Date.parse(a.start_time) - Date.parse(b.start_time))
+                                             .filter(i => venues.length === 1 && venues.includes("Other") ? !excludedVenues.includes(i.venue.name):
+                                                    venues.length > 1 && venues.includes("Other")? !excludedVenues.includes(i.venue.name) || venues.includes(i.venue.name)  :
+                                                    venues.length > 0? venues.includes(i.venue.name): events)
+                                                          
     eventss.map(i => {
         const test = new Date(i.start_time).toDateString()
         if (!dates.includes(test)) {
             dates.push(test)
-        }})
+    }})
+
     console.log(dates);
     return (
      <>
