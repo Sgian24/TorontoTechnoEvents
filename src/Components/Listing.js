@@ -3,29 +3,31 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Listing = ({events, venues}) => {
+const Listing = ({dates, setDates, events, venues, selectedDate}) => {
 
-    const excludedVenues = ["Standard Time", "Sounds Good", "Bambi's", "Cafeteria", ]
-    const dates = []
-    const eventss = events.sort((a,b) => Date.parse(a.start_time) - Date.parse(b.start_time))
+    const excludedVenues = ["Standard Time", "Sounds Good", "Bambi's", "Cafeteria", "BSMT254", "The Comfort Zone"]
+    const filteredEvents = events.sort((a,b) => Date.parse(a.start_time) - Date.parse(b.start_time))
                                              .filter(i => venues.length === 1 && venues.includes("Other") ? !excludedVenues.includes(i.venue.name):
-                                                    venues.length > 1 && venues.includes("Other")? !excludedVenues.includes(i.venue.name) || venues.includes(i.venue.name)  :
+                                                    venues.length > 1 && venues.includes("Other")? !excludedVenues.includes(i.venue.name) || venues.includes(i.venue.name):
                                                     venues.length > 0? venues.includes(i.venue.name): events)
-                                                          
-    eventss.map(i => {
-        const test = new Date(i.start_time).toDateString()
-        if (!dates.includes(test)) {
-            dates.push(test)
-    }})
+    const filteredDates = []                                       
 
-    console.log(dates);
+    useEffect(() => {
+        filteredEvents.forEach(i => {
+            const eventDate = new Date(i.start_time).toDateString()
+            if (!filteredDates.includes(eventDate)) {
+            filteredDates.push(eventDate)}
+        })
+        setDates(filteredDates)
+    },[events,venues])
+
     return (
      <>
         <Container className="d-flex flex-column align-items-center">
-        {dates.map( j =>  
+        {dates.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(j) === selectedDate ).map( k =>  
          <ul className="px-0 " style={{listStyleType:"none"}}>
-         <h3>{j}</h3>
-         {eventss.filter(i => j === new Date(i.start_time).toDateString()).map(i =>
+         <h3>{k}</h3>
+         {filteredEvents.filter(i => k === new Date(i.start_time).toDateString()).map(i =>
           <li className="mb-2 ">
             <Row className="d-flex justify-content-between border gx-0" style={{height:"30vh", width:"50vw"}}>
                 <Col className="h-100" xl={3}>  
