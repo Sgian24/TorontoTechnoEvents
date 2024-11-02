@@ -21,8 +21,8 @@ const Filter = ({ dates, venues, setVenues, selectedDate, setSelectedDate, displ
             <Row className="mb-2 d-flex justify-content-start" style={{width:"50vw"}}>
                 <Col className="px-0 d-flex justify-content-between gap-2">
                     <div>
-                        <Button className="me-2 " variant="outline-primary" onClick={() => setOpenDate(!openDate)}>DATE</Button>
-                        <Button variant="outline-primary" onClick={() => setOpenVenue(!openVenue)} >VENUE</Button>
+                        <Button className="me-2" style={{fontWeight:"bold", color:"black"}} variant="outline-primary" onClick={() => setOpenDate(!openDate)}>Date</Button>
+                        <Button variant="outline-primary" style={{fontWeight:"bold", color:"black"}} onClick={() => setOpenVenue(!openVenue)} >Venue</Button>
                     </div>
                     <ButtonGroup>
                         <ToggleButton checked={display === "list"} value="list" type="checkbox" variant="outline-primary" onClick={() => setDisplay("list")}>
@@ -37,13 +37,12 @@ const Filter = ({ dates, venues, setVenues, selectedDate, setSelectedDate, displ
             <Row className="" style={{width:"50vw"}}>
              <Collapse in={openVenue}>
                 <Col className="" style={{width:"50%"}}>
-                    <Form>
+                    <Form style={{fontFamily:"roboto"}}>
                         <Form.Check id="test" onChange={handleCheck} inline value="Standard Time" label="Standard Time" name="group1" type="checkbox"/>
                         <Form.Check onChange={handleCheck} inline value="Sounds Good" label="Sounds Good" name="group1" type="checkbox"/>
                         <Form.Check onChange={handleCheck} inline value="BSMT254" label="BSMT254" name="group1" type="checkbox"/>
                         <Form.Check onChange={handleCheck} inline value="Bambi's" label="Bambi's" name="group1" type="checkbox"/>
                         <Form.Check onChange={handleCheck} inline value="Cafeteria" label="Cafeteria" name="group1" type="checkbox"/>
-                        <Form.Check onChange={handleCheck} inline value="The Comfort Zone" label="The Comfort Zone" name="group1" type="checkbox"/>
                         <Form.Check onChange={handleCheck} inline value="Other" label="Other" name="group1" type="checkbox"/>
                     </Form>
                 </Col>

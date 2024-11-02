@@ -24,13 +24,14 @@ const Home = () => {
     }
     fetchData(); 
   },[])
-  
+
   return (
     <div className="d-flex flex-column justify-content-center">
-    <h1 className="text-center mt-5">Toronto Techno Events</h1>
+    <h1 className="text-center mt-5" style={{fontFamily:"roboto"}}>TORONTO TECHNO EVENTS</h1>
+    <p className="text-center">A listing of upcoming techno and techno adjacent events in Toronto.</p>
     <Filter display={display} setDisplay={setDisplay} dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} />
     {display === "list"? <Listing setEvents={setEvents} dates={dates} setDates={setDates} selectedDate={selectedDate} setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events}/>:
-    <APIProvider apiKey="AIzaSyD2XvOEcFNS9bY33OG9ceW0KbuF5tweiOo">
+    <APIProvider apiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
        <Maps selectedDate={selectedDate} events={events} venues={venues} />
     </APIProvider>}
     </div>
