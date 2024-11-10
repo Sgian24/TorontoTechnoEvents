@@ -1,6 +1,32 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
+@font-face {
+    font-family: Barlow;
+    src: url(./Assets/Barlow-Light.otf)
+}
+
 p {
-    font-family: roboto;
+    font-family: Barlow;
+}
+
+h3 {
+    color: #5dd084 !important;
+    font-weight: bold !important;
+}
+
+.react-datepicker__day--highlighted,.react-datepicker__month-text--highlighted, .react-datepicker__quarter-text--highlighted, .react-datepicker__year-text--highlighted {
+    background-color: #5dd084;
+}
+
+.react-datepicker__day--highlighted:hover, .react-datepicker__day--selected:hover{
+    background-color: #2aac56;
+}
+
+.react-datepicker__day--selected {
+    background-color: #2aac56;
+}
+
+.react-datepicker__day--keyboard-selected {
+    background-color: #ffffff;
 }
 
