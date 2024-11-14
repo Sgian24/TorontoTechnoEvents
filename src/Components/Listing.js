@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import {Container, Row, Col, Modal} from "react-bootstrap";
+import {Container, Row, Col, Modal, Button} from "react-bootstrap";
 
 
 const Listing = ({dates, setDates, events, venues, selectedDate}) => {
@@ -44,16 +44,26 @@ const Listing = ({dates, setDates, events, venues, selectedDate}) => {
         setTimeout(add, 500)
     }
 
-    console.log(document.body);
+    console.log("test",filteredEvents);
 
 
     return (
      <>
         <Container className="d-flex flex-column align-items-center">
         <Modal size="md" show={show} onHide={handleClose} >
-                <Modal.Header closeButton>{test?.name}</Modal.Header>
+                <Modal.Header style={{ fontFamily:"Barlow"}} closeButton><h4 style={{fontWeight:"bold"}}>{test?.name}</h4></Modal.Header>
                 <Modal.Body>
+                    <div style={{fontFamily:"Barlow"}}>
+                    <span style={{fontWeight:"bold"}}>Venue:</span><br/><span>{test.venue?.name}</span><br/>
+                        <span>{test.venue?.full_address}</span>
+                    </div>
+                    <div style={{fontFamily:"Barlow"}}>
+                        <span style={{fontWeight:"bold"}}>Date:</span><br/><span>{new Date(test.start_time).toDateString()}</span><br/>
+                        <span>{test.start_time?.split(" ")[1]} - {test.end_time?.split(" ")[1]}</span>
+                    </div>
+                    <br />
                     <p ref={descriptionRef}></p>
+                    <Button style={{fontFamily:"Barlow",fontWeight:"bold", color:"black"}} variant="outline-primary" target="_blank" href={test.ticket_links? test.ticket_links[0].link: test.link}>Tickets</Button> 
                 </Modal.Body>
             </Modal>
         {dates.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(j) === selectedDate ).map( k =>  
