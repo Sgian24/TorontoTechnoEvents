@@ -1,7 +1,8 @@
 import { Map, useMap, AdvancedMarker } from "@vis.gl/react-google-maps";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "react-bootstrap";
 
-const Maps = ({events, venues}) => {
+const Maps = ({events, venues, selectedDate, setShow, setModalEvent}) => {
 
     const [markerIndex, setMarkerIndex] = useState(null)
 
@@ -19,7 +20,7 @@ const Maps = ({events, venues}) => {
                                              .filter(i => venues.length === 1 && venues.includes("Other") ? !excludedVenues.includes(i.venue.name):
                                                     venues.length > 1 && venues.includes("Other")? !excludedVenues.includes(i.venue.name) || venues.includes(i.venue.name):
                                                     venues.length > 0? venues.includes(i.venue.name): events)
-  
+    
     const handleClick = (i) => {
       if (!map) return;
       map?.panTo({lat:i.venue?.latitude, lng:i.venue?.longitude})
@@ -37,17 +38,33 @@ const Maps = ({events, venues}) => {
       setMarkerIndex(null)
     }
 
+    const handleShow = (obj) => {
+      setShow(true)
+      setModalEvent(obj)
+      document.body.classList.remove("overflow-y-scroll")
+    }
+    
     return (
-    <div className="d-flex justify-content-center">
-      <div className="border" style={{height:500, width:"80%"}}>
+    <div className="d-flex justify-content-center ">
+      <div className="border mt-2" style={{height:500, width:"80%"}}>
         <Map mapId="f82e39075e77b12"  defaultZoom={13} defaultCenter={{lat: 43.658749251843645, lng: -79.38865085207193}}>
-          {filteredEvents.map( (i, index) =>
+          {filteredEvents.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(new Date(j.start_time).toDateString()) === selectedDate)
+          .map( (i, index) =>
           <AdvancedMarker zIndex={markerIndex === index? 1:0} key={index} onMouseEnter={() => handleMouseEnter(index)} 
             onMouseLeave={() => handleMouseLeave(index)} onClick={() => handleClick(i)} 
             position={{lat:i.venue.latitude + i.random?.[0] , lng: i.venue.longitude + i.random?.[1] 
           }}>
-            <div ref={e => markerRef.current[index] = e} style={{zIndex:0}}className="p-3 d-flex flex-column align-items-center">
-              <div style={{display:"none",height:50,width:50, backgroundColor:"white"}}></div> 
+            <div  ref={e => markerRef.current[index] = e} style={{zIndex:0}}className=" d-flex flex-column align-items-center">
+                <div style={{padding:"0.5rem",fontFamily:"Barlow",borderRadius:"5px", display:"none", height:"auto", width:"15vw", backgroundColor:"white"}}>
+                  <div className="fw-bolder mb-1" >{i.name}</div>
+                  <span>{i.venue.name + " "}</span>
+                  <i class="bi bi-star-fill"></i>
+                  <span>{i.venue.rating? " " + i.venue.rating: ""}</span>
+                  <br />
+                  <span>{new Date(i.start_time).toDateString()}</span><br />
+                  <span>{i.start_time?.split(" ")[1]} - {i.end_time?.split(" ")[1]}</span><br />
+                  <Button onClick={() => handleShow(i)} variant="outline-primary text-black fw-bold"  className="pt-0 mt-1" style={{fontFamily:"Barlow", height:"1.3rem", fontSize:"0.8rem"}}>Info</Button>
+                </div> 
               <i className="bi bi-geo-alt-fill text-danger" style={{zIndex:0,fontSize:"2rem"}}></i>
             </div>
           </AdvancedMarker>)}

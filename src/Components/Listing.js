@@ -1,11 +1,8 @@
-import { useEffect, useState, useRef } from "react";
-import {Container, Row, Col, Modal, Button} from "react-bootstrap";
+import { useEffect, useRef } from "react";
+import {Container, Row, Col} from "react-bootstrap";
 
 
-const Listing = ({dates, setDates, events, venues, selectedDate}) => {
-
-    const [show, setShow] = useState(false)
-    const [test, setTest] = useState({})
+const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, setModalEvent, show, setShow}) => {
 
     const descriptionRef = useRef(null)
 
@@ -28,44 +25,19 @@ const Listing = ({dates, setDates, events, venues, selectedDate}) => {
 
     useEffect(() => {
         if (descriptionRef.current !== null ) {
-            descriptionRef.current.innerHTML = test.description? test.description?.split("\n").join(`<br />`)
-            .replace(/[\u0000-\u001F\u007F-\u009F]|b\u0000/g,"").replace("&",`... <a href="${test.link}" target=_blank>Read More</a>`):""
+            descriptionRef.current.innerHTML = modalEvent.description? modalEvent.description?.split("\n").join(`<br />`)
+            .replace(/[\u0000-\u001F\u007F-\u009F]|b\u0000/g,"").replace("&",`... <a href="${modalEvent.link}" target=_blank>Read More</a>`):""
     }},[show])
 
     const handleShow = (obj) => {
         setShow(true)
-        setTest(obj)
+        setModalEvent(obj)
         document.body.classList.remove("overflow-y-scroll")
     }
-
-    const handleClose = () => {
-        setShow(false)
-        const add = () => document.body.classList.add("overflow-y-scroll")
-        setTimeout(add, 500)
-    }
-
-    console.log("test",filteredEvents);
-
 
     return (
      <>
         <Container className="d-flex flex-column align-items-center">
-        <Modal size="md" show={show} onHide={handleClose} >
-                <Modal.Header style={{ fontFamily:"Barlow"}} closeButton><h4 style={{fontWeight:"bold"}}>{test?.name}</h4></Modal.Header>
-                <Modal.Body>
-                    <div style={{fontFamily:"Barlow"}}>
-                    <span style={{fontWeight:"bold"}}>Venue:</span><br/><span>{test.venue?.name}</span><br/>
-                        <span>{test.venue?.full_address}</span>
-                    </div>
-                    <div style={{fontFamily:"Barlow"}}>
-                        <span style={{fontWeight:"bold"}}>Date:</span><br/><span>{new Date(test.start_time).toDateString()}</span><br/>
-                        <span>{test.start_time?.split(" ")[1]} - {test.end_time?.split(" ")[1]}</span>
-                    </div>
-                    <br />
-                    <p ref={descriptionRef}></p>
-                    <Button style={{fontFamily:"Barlow",fontWeight:"bold", color:"black"}} variant="outline-primary" target="_blank" href={test.ticket_links? test.ticket_links[0].link: test.link}>Tickets</Button> 
-                </Modal.Body>
-            </Modal>
         {dates.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(j) === selectedDate ).map( k =>  
          <ul className="px-0 " style={{listStyleType:"none"}}>
          <h3 className="mt-2">{k.toUpperCase()}</h3>
