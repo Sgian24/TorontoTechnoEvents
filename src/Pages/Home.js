@@ -43,7 +43,7 @@ const Home = () => {
   }
 
   return (
-    <Container>
+    <Container className="px-0" fluid>
        <Modal size="md" show={show} onHide={handleClose} >
           <Modal.Header style={{ fontFamily:"Barlow"}} closeButton><h4 style={{fontWeight:"bold"}}>{modalEvent?.name}</h4></Modal.Header>
           <Modal.Body>
@@ -61,7 +61,7 @@ const Home = () => {
           </Modal.Body>
       </Modal>
     <div className="d-flex flex-column justify-content-center">
-      <h1 className="text-center mt-5" style={{fontFamily:"roboto"}}>TORONTO TECHNO EVENTS</h1>
+      <h1 className="text-center mt-5" style={{fontFamily:"Nudista"}}>TORONTO TECHNO EVENTS</h1>
       <p className="text-center">A listing of upcoming techno and techno adjacent events in Toronto.</p>
       <Filter display={display} setDisplay={setDisplay} dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} />
       {display === "list"? 
@@ -71,6 +71,7 @@ const Home = () => {
           <Maps selectedDate={selectedDate} events={events} venues={venues} modalEvent={modalEvent} setModalEvent={setModalEvent} setShow={setShow} />
         </APIProvider>}
       </div>
+      <p className="sunny mt-3 text-center">Designed and developed by Sunny Gian.</p>
     </Container>
   );
 }

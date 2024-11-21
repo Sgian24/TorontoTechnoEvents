@@ -43,7 +43,7 @@ const Maps = ({events, venues, selectedDate, setShow, setModalEvent}) => {
       setModalEvent(obj)
       document.body.classList.remove("overflow-y-scroll")
     }
-    
+
     return (
     <div className="d-flex justify-content-center ">
       <div className="border mt-2" style={{height:500, width:"80%"}}>
@@ -63,7 +63,7 @@ const Maps = ({events, venues, selectedDate, setShow, setModalEvent}) => {
                   <br />
                   <span>{new Date(i.start_time).toDateString()}</span><br />
                   <span>{i.start_time?.split(" ")[1]} - {i.end_time?.split(" ")[1]}</span><br />
-                  <Button onClick={() => handleShow(i)} variant="outline-primary text-black fw-bold"  className="pt-0 mt-1" style={{fontFamily:"Barlow", height:"1.3rem", fontSize:"0.8rem"}}>Info</Button>
+                  <Button onClick={() => handleShow(i)} variant="outline-primary fw-bold"  className="pt-0 mt-1" style={{height:"1.3rem", fontSize:"0.8rem"}}>Info</Button>
                 </div> 
               <i className="bi bi-geo-alt-fill text-danger" style={{zIndex:0,fontSize:"2rem"}}></i>
             </div>

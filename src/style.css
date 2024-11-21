@@ -5,31 +5,49 @@
     src: url(./Assets/Barlow-Light.otf)
 }
 
+@font-face {
+    font-family: Nudista;
+    src: url(./Assets//Nudista\ Bold.ttf)
+}
+
 p {
     font-family: Barlow;
 }
 
 h3 {
-    color: #5dd084 !important;
+    color: #4b73b4 !important;
     font-weight: bold !important;
+}
+
+Button {
+    font-family: Barlow !important;
+}
+
+.sunny {
+    color: rgb(160, 160, 160);
 }
 
 .list-row:hover {
     background-color: #f4f4f4;
 }
 .react-datepicker__day--highlighted,.react-datepicker__month-text--highlighted, .react-datepicker__quarter-text--highlighted, .react-datepicker__year-text--highlighted {
-    background-color: #5dd084;
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px rgb(182, 182, 182);
 }
 
 .react-datepicker__day--highlighted:hover, .react-datepicker__day--selected:hover{
-    background-color: #2aac56;
+    background-color: #4b73b4;
+    color: white;
 }
 
 .react-datepicker__day--selected {
-    background-color: #2aac56;
+    background-color: #4b73b4;
+    color: white;
 }
 
 .react-datepicker__day--keyboard-selected {
     background-color: #ffffff;
+    color: white;
 }
 
