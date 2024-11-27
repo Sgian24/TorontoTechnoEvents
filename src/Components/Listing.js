@@ -30,8 +30,14 @@ const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, set
     }},[show])
 
     const handleShow = (obj) => {
+        
         setShow(true)
         setModalEvent(obj)
+        if (window.innerHeight <= document.body.scrollHeight) {
+            document.getElementsByTagName("html")[0].style.scrollbarGutter = "auto";
+        } else {
+            document.getElementsByTagName("html")[0].style.scrollbarGutter = "stable"
+        }
         document.body.classList.remove("overflow-y-scroll")
     }
 
@@ -40,9 +46,9 @@ const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, set
         <Container className="d-flex flex-column align-items-center">
         {dates.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(j) === selectedDate ).map( k =>  
          <ul className="px-0 " style={{listStyleType:"none"}}>
-         <h3 className="mt-2" style={{fontFamily:"Nudista"}}>{k.toUpperCase()}</h3>
+         <h3 className="mt-2" style={{fontFamily:"Nudista "}}>{k.toUpperCase()}</h3>
          {filteredEvents.filter(i => k === new Date(i.start_time).toDateString()).map(i =>
-          <li className="mb-2 ">
+          <li className="mb-2">
             <Row onClick={() => handleShow(i)} className="list-row d-flex justify-content-between border gx-0" style={{height:"30vh", width:"50vw", cursor:"pointer"}}>
                 <Col className="border h-100" xl={3}>  
                     {i.thumbnail? <img className=" object-fit-cover" src={i.thumbnail} height="100%" width="100%"></img>

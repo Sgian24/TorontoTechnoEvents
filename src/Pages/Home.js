@@ -37,14 +37,16 @@ const Home = () => {
 
 
   const handleClose = () => {
-    setShow(false)
-    const add = () => document.body.classList.add("overflow-y-scroll")
-    setTimeout(add, 500)
+   setShow(false)
+   const add = () => {
+      document.body.classList.add("overflow-y-scroll")
+    }
+    setTimeout(add, 300)
   }
 
   return (
-    <Container className="px-0" fluid>
-       <Modal size="md" show={show} onHide={handleClose} >
+    <Container style={{scrollbarGutter:"stable both-edges"}}className="px-0" fluid>
+       <Modal scrollable={true} size="md" show={show} onHide={handleClose} >
           <Modal.Header style={{ fontFamily:"Barlow"}} closeButton><h4 style={{fontWeight:"bold"}}>{modalEvent?.name}</h4></Modal.Header>
           <Modal.Body>
             <div style={{fontFamily:"Barlow"}}>
@@ -57,7 +59,7 @@ const Home = () => {
             </div>
             <br />
             <p ref={descriptionRef}></p>
-            <Button style={{fontFamily:"Barlow",fontWeight:"bold", color:"black"}} variant="outline-primary" target="_blank" href={modalEvent.ticket_links? modalEvent.ticket_links[0].link: modalEvent.link}>Tickets</Button> 
+            <Button style={{fontFamily:"Barlow",fontWeight:"bold"}} variant="outline-primary" target="_blank" href={modalEvent.ticket_links? modalEvent.ticket_links[0].link: modalEvent.link}>Tickets</Button> 
           </Modal.Body>
       </Modal>
     <div className="d-flex flex-column justify-content-center">
