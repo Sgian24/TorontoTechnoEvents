@@ -79,6 +79,10 @@ html {
     .list-row {
         width: 55vw !important;
     }
+
+    .calendar-row {
+        width: 55vw !important;
+    }
 }
 
 @media only screen and (max-width: 992px) {
@@ -91,10 +95,14 @@ html {
     }
 
     .venue-row {
-        width: 65vw !important;
+        width: 68vw !important;
     }
 
     .list-row {
+        width: 68vw !important;
+    }
+
+    .calendar-row {
         width: 68vw !important;
     }
 }
@@ -104,17 +112,21 @@ html {
         width: 25vw !important;
     }
 
-      .filter-row {
+    .filter-row {
         width: 75vw !important;
     }
 
     .venue-row {
-        width: 70vw !important;
+        width: 75vw !important;
     }
 
     .list-row {
         width: 75vw !important;
         height: 11rem !important;
+    }
+
+    .calendar-row {
+        width: 75vw !important;
     }
 
     .event-name {
@@ -132,12 +144,16 @@ html {
     }
 
     .venue-row {
-        width: 75vw !important;
+        width: 80vw !important;
     }
 
     .list-row {
         width: 80vw !important;
         height: 11rem !important;
+    }
+
+    .calendar-row {
+        width: 80vw !important;
     }
 
     .subtext {
