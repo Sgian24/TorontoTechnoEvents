@@ -23,8 +23,16 @@ Button {
     font-family: Barlow !important;
 }
 
+html {
+    scrollbar-gutter:stable;
+}
+
 .sunny {
     color: rgb(160, 160, 160);
+}
+
+.paddings {
+    padding-left: 1rem;
 }
 
 .list-row:hover {
@@ -51,3 +59,88 @@ Button {
     color: white;
 }
 
+/* Media Queries*/
+
+@media only screen and (max-width: 1440px) {
+    .map-div {
+        height: 500px !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .filter-row {
+        width: 55vw !important;
+    }
+
+    .venue-row {
+        width: 55vw !important;
+    }
+
+    .list-row {
+        width: 55vw !important;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .overlay {
+        width: 20vw !important;
+    }
+
+    .filter-row {
+        width: 68vw !important;
+    }
+
+    .venue-row {
+        width: 65vw !important;
+    }
+
+    .list-row {
+        width: 68vw !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .overlay {
+        width: 25vw !important;
+    }
+
+      .filter-row {
+        width: 75vw !important;
+    }
+
+    .venue-row {
+        width: 70vw !important;
+    }
+
+    .list-row {
+        width: 75vw !important;
+        height: 11rem !important;
+    }
+
+    .event-name {
+        font-size: 16px;
+    }
+}
+
+
+@media only screen and (max-width: 576px) {
+    .overlay {
+        width: 30vw !important;
+    }
+      .filter-row {
+        width: 80vw !important;
+    }
+
+    .venue-row {
+        width: 75vw !important;
+    }
+
+    .list-row {
+        width: 80vw !important;
+        height: 11rem !important;
+    }
+
+    .subtext {
+        width: 70vw;
+    }
+}

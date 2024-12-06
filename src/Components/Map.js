@@ -46,7 +46,7 @@ const Maps = ({events, venues, selectedDate, setShow, setModalEvent}) => {
 
     return (
     <div className="d-flex justify-content-center ">
-      <div className="border mt-2" style={{height:500, width:"80%"}}>
+      <div className="map-div border mt-2" style={{height:800, width:"80%"}}>
         <Map mapId="f82e39075e77b12"  defaultZoom={13} defaultCenter={{lat: 43.658749251843645, lng: -79.38865085207193}}>
           {filteredEvents.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(new Date(j.start_time).toDateString()) === selectedDate)
           .map( (i, index) =>
@@ -55,7 +55,7 @@ const Maps = ({events, venues, selectedDate, setShow, setModalEvent}) => {
             position={{lat:i.venue.latitude + i.random?.[0] , lng: i.venue.longitude + i.random?.[1] 
           }}>
             <div  ref={e => markerRef.current[index] = e} style={{zIndex:0}}className=" d-flex flex-column align-items-center">
-                <div style={{padding:"0.5rem",fontFamily:"Barlow",borderRadius:"5px", display:"none", height:"auto", width:"15vw", backgroundColor:"white"}}>
+                <div className="overlay" style={{padding:"0.5rem",fontFamily:"Barlow",borderRadius:"5px", display:"none", height:"auto", width:"15vw", backgroundColor:"white"}}>
                   <div className="fw-bolder mb-1" >{i.name}</div>
                   <span>{i.venue.name + " "}</span>
                   <i class="bi bi-star-fill"></i>

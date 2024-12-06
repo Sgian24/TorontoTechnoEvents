@@ -64,8 +64,8 @@ const Home = () => {
       </Modal>
     <div className="d-flex flex-column justify-content-center">
       <h1 className="text-center mt-5" style={{fontFamily:"Nudista"}}>TORONTO TECHNO EVENTS</h1>
-      <p className="text-center">A listing of upcoming techno and techno adjacent events in Toronto.</p>
-      <Filter display={display} setDisplay={setDisplay} dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} />
+      <p className="subtext text-center ms-auto me-auto">A listing of upcoming techno and techno adjacent events in Toronto.</p>
+      <Filter display={display} setDisplay={setDisplay} setDates={setDates} dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} />
       {display === "list"? 
         <Listing setEvents={setEvents} dates={dates} setDates={setDates} selectedDate={selectedDate} show={show} setShow={setShow} 
         setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} modalEvent={modalEvent} setModalEvent={setModalEvent}/>:
