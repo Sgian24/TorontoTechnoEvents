@@ -1,27 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef} from "react";
 import {Container, Row, Col} from "react-bootstrap";
 
 
 const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, setModalEvent, show, setShow}) => {
 
     const descriptionRef = useRef(null)
-
     const excludedVenues = ["Standard Time", "Sounds Good", "Bambi's", "Cafeteria", "BSMT254"]
     const filteredEvents = events.sort((a,b) => Date.parse(a?.start_time) - Date.parse(b?.start_time))
                                              .filter(i => venues.length === 1 && venues.includes("Other") ? !excludedVenues.includes(i.venue.name):
                                                     venues.length > 1 && venues.includes("Other")? !excludedVenues.includes(i.venue.name) || venues.includes(i.venue.name):
                                                     venues.length > 0? venues.includes(i.venue.name): events)
-                                       
-    const filteredDates = []  
-                                         
+    const eventValues = []
+
     useEffect(() => {
-        filteredEvents.forEach(i => {
-            const eventDate = new Date(i?.start_time).toDateString()
-            if (!filteredDates.includes(eventDate)) {
-            filteredDates.push(eventDate)}
-        })
-        setDates(filteredDates)
-    },[events,venues])
+            const startTimes = []
+            if (events.length > 0) {
+            filteredEvents.forEach(i => startTimes.push(i.start_time))
+            setDates(startTimes)
+            }
+    },[events])               
 
     useEffect(() => {
         if (descriptionRef.current !== null ) {
@@ -30,7 +27,6 @@ const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, set
     }},[show])
 
     const handleShow = (obj) => {
-        
         setShow(true)
         setModalEvent(obj)
         if (window.innerHeight <= document.body.scrollHeight) {
@@ -41,13 +37,17 @@ const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, set
         document.body.classList.remove("overflow-y-scroll")
     }
 
+    filteredEvents.map(i => Object.values(i).map(j => eventValues.push(j)));
+  
     return (
      <>
         <Container className="d-flex flex-column align-items-center">
-        {dates.filter(j => selectedDate === ""? typeof Date.parse(j) === "number" : Date.parse(j) === selectedDate ).map( k =>  
+        {dates.filter((j,index) => selectedDate === ""? dates.indexOf(j) === index && typeof Date.parse(j) === "number"
+         && eventValues.includes(j)
+         : dates.indexOf(j) === index && eventValues.includes(j) && Date.parse(new Date(j).toDateString()) === selectedDate ).map( k =>  
          <ul className="px-0 " style={{listStyleType:"none"}}>
-         <h3 className="mt-2" style={{fontFamily:"Nudista "}}>{k.toUpperCase()}</h3>
-         {filteredEvents.filter(i => k === new Date(i.start_time).toDateString()).map(i =>
+         <h3 className="mt-2" style={{fontFamily:"Nudista "}}>{new Date(k).toDateString().toUpperCase()}</h3>
+         {filteredEvents.filter(i => k === i.start_time).map(i =>
           <li className="mb-2">
             <Row onClick={() => handleShow(i)} className="list-row d-flex justify-content-between border gx-0" style={{height:"30vh", width:"50vw", cursor:"pointer"}}>
                 <Col className="border h-100" xl={3}>  
