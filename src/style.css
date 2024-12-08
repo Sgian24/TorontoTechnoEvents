@@ -67,6 +67,12 @@ html {
     }
 }
 
+@media only screen and (max-width: 1300px) {
+    .list-row {
+        height: 30vh !important;
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .filter-row {
         width: 55vw !important;
@@ -104,6 +110,10 @@ html {
 
     .calendar-row {
         width: 68vw !important;
+    }
+
+    .thumbnail-placeholder {
+        font-size: 5rem !important;
     }
 }
 
@@ -149,7 +159,7 @@ html {
 
     .list-row {
         width: 80vw !important;
-        height: 11rem !important;
+       height: 6.3rem !important;
     }
 
     .calendar-row {
@@ -158,5 +168,26 @@ html {
 
     .subtext {
         width: 70vw;
+    }
+
+    .info-col {
+        padding: 0 !important;
+    }
+
+    .thumbnail {
+        width: 200%;
+        height: 100;
+    }
+
+    .listing-font {
+        font-size: 12px;
+    }
+
+    .event-name {
+        font-size: 14px;
+    }
+
+    .thumbnail-placeholder {
+        width: 200% !important;
     }
 }

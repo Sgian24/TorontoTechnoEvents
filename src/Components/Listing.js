@@ -5,7 +5,7 @@ import {Container, Row, Col} from "react-bootstrap";
 const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, setModalEvent, show, setShow}) => {
 
     const descriptionRef = useRef(null)
-    const excludedVenues = ["Standard Time", "Sounds Good", "Bambi's", "Cafeteria", "BSMT254"]
+    const excludedVenues = ["Standard Time", "Sounds Good", "Bambi's", "CAFETERIA", "BSMT254"]
     const filteredEvents = events.sort((a,b) => Date.parse(a?.start_time) - Date.parse(b?.start_time))
                                              .filter(i => venues.length === 1 && venues.includes("Other") ? !excludedVenues.includes(i.venue.name):
                                                     venues.length > 1 && venues.includes("Other")? !excludedVenues.includes(i.venue.name) || venues.includes(i.venue.name):
@@ -49,17 +49,17 @@ const Listing = ({dates, setDates, events, venues, selectedDate, modalEvent, set
          <h3 className="mt-2" style={{fontFamily:"Nudista "}}>{new Date(k).toDateString().toUpperCase()}</h3>
          {filteredEvents.filter(i => k === i.start_time).map(i =>
           <li className="mb-2">
-            <Row onClick={() => handleShow(i)} className="list-row d-flex justify-content-between border gx-0" style={{height:"30vh", width:"50vw", cursor:"pointer"}}>
-                <Col className="border h-100" xs={3} xl={3}>  
-                    {i.thumbnail? <img className=" object-fit-cover" src={i.thumbnail} height="100%" width="100%"></img>
-                                 :<i className="bi bi-images text-center mt-4"  style={{fontSize:"4rem",display:"block", margin:"auto"}}></i>}
+            <Row onClick={() => handleShow(i)} className="list-row d-flex justify-content-between border gx-2" style={{height:"20vh", width:"50vw", cursor:"pointer"}}>
+                <Col className="d-flex flex-column justify-content-center h-100 ps-0 pe-0 " xs={2} sm={3} xl={3}>  
+                    {i.thumbnail? <img className="thumbnail object-fit-cover " src={i.thumbnail} height="100%" width="100%"></img>
+                                 :<i className="thumbnail-placeholder bi bi-images text-center" style={{fontSize:"7rem",width:"100%"}}></i>}
                 </Col>
-                <Col className="d-flex flex-column justify-content-between ps-4 pe-4 pt-2 pb-2" xs={9} xl={9}>
+                <Col style={{borderLeft:"solid 1px #dee2e6"}} className="info-col d-flex flex-column justify-content-center justify-content-sm-between ps-3 pe-4 pt-2 pb-2 " xs={8} sm={9} xl={9}>
                     <h5 className="event-name" style={{fontFamily:"Barlow", fontWeight:"bold"}}>{i.name}</h5>
                     <div className="d-flex flex-column justify-content-center">
-                        <div style={{fontFamily:"Barlow"}}>{i.start_time?.split(" ")[1]} - {i.end_time?.split(" ")[1]}</div>
-                        <div style={{fontFamily:"Barlow", fontWeight:"bold"}}>{i.venue?.name}</div>
-                        <div style={{fontFamily:"Barlow"}}>{i.venue?.full_address}</div>
+                        <div className="listing-font" style={{fontFamily:"Barlow"}}>{i.start_time?.split(" ")[1]} - {i.end_time?.split(" ")[1]}</div>
+                        <div className="listing-font" style={{fontFamily:"Barlow", fontWeight:"bold"}}>{i.venue?.name}</div>
+                        <div className="listing-font d-none d-sm-block" style={{fontFamily:"Barlow"}}>{i.venue?.full_address}</div>
                     </div>
                 </Col>
             </Row>
