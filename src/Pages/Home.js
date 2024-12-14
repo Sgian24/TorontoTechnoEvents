@@ -35,7 +35,7 @@ const Home = () => {
         .replace(/[\u0000-\u001F\u007F-\u009F]|b\u0000/g,"").replace("&",`... <a href="${modalEvent.link}" target=_blank>Read More</a>`):""
 }},[show])
 
-
+console.log(events);
   const handleClose = () => {
    setShow(false)
    const add = () => {
@@ -45,32 +45,34 @@ const Home = () => {
   }
 
   return (
-    <Container style={{scrollbarGutter:"stable both-edges"}}className="px-0" fluid>
-       <Modal scrollable={true} size="md" show={show} onHide={handleClose} >
-          <Modal.Header style={{ fontFamily:"Barlow"}} closeButton><h4 style={{fontWeight:"bold"}}>{modalEvent?.name}</h4></Modal.Header>
+    <Container className="home-container px-0" fluid>
+       <Modal scrollable={true} size="md" show={show} onHide={handleClose} centered>
+          <Modal.Header className="modal-header" closeButton>
+            <h4 className="fw-bold">{modalEvent?.name}</h4>
+          </Modal.Header>
           <Modal.Body>
-            <div style={{fontFamily:"Barlow"}}>
-              <span style={{fontWeight:"bold"}}>Venue:</span><br/><span>{modalEvent.venue?.name}</span><br/>
+            <div className="modal-body-div">
+              <span className="fw-bold">Venue:</span><br/><span>{modalEvent.venue?.name}</span><br/>
               <span>{modalEvent.venue?.full_address}</span>
             </div>
-            <div style={{fontFamily:"Barlow"}}>
-              <span style={{fontWeight:"bold"}}>Date:</span><br/><span>{new Date(modalEvent.start_time).toDateString()}</span><br/>
+            <div className="modal-body-div">
+              <span className="fw-bold">Date:</span><br/><span>{new Date(modalEvent.start_time).toDateString()}</span><br/>
               <span>{modalEvent.start_time?.split(" ")[1]} - {modalEvent.end_time?.split(" ")[1]}</span>
             </div>
             <br />
             <p ref={descriptionRef}></p>
-            <Button style={{fontFamily:"Barlow",fontWeight:"bold"}} variant="outline-primary" target="_blank" href={modalEvent.ticket_links? modalEvent.ticket_links[0].link: modalEvent.link}>Tickets</Button> 
+            <Button className="modal-button fw-bold" variant="outline-primary" target="_blank" href={modalEvent.ticket_links? modalEvent.ticket_links[0].link: modalEvent.link}>Tickets</Button> 
           </Modal.Body>
       </Modal>
     <div className="d-flex flex-column justify-content-center">
-      <h1 className="text-center mt-5" style={{fontFamily:"Nudista"}}>TORONTO TECHNO EVENTS</h1>
+      <h1 className="text-center mt-5" >TORONTO TECHNO EVENTS</h1>
       <p className="subtext text-center ms-auto me-auto">A listing of upcoming techno and techno adjacent events in Toronto.</p>
       <Filter display={display} setDisplay={setDisplay} setDates={setDates} dates={dates} selectedDate={selectedDate} setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} />
       {display === "list"? 
         <Listing setEvents={setEvents} dates={dates} setDates={setDates} selectedDate={selectedDate} show={show} setShow={setShow} 
         setSelectedDate={setSelectedtDate} venues={venues} setVenues={setVenues} events={events} modalEvent={modalEvent} setModalEvent={setModalEvent}/>:
         <APIProvider apiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
-          <Maps selectedDate={selectedDate} events={events} venues={venues} modalEvent={modalEvent} setModalEvent={setModalEvent} setShow={setShow} />
+          <Maps display={display} selectedDate={selectedDate} events={events} venues={venues} modalEvent={modalEvent} setModalEvent={setModalEvent} setShow={setShow} />
         </APIProvider>}
       </div>
       <p className="sunny mt-3 text-center">Designed and developed by Sunny Gian.</p>

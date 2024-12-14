@@ -1,5 +1,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
+/* Fonts */
+
 @font-face {
     font-family: Barlow;
     src: url(./Assets/Barlow-Light.otf)
@@ -10,13 +12,20 @@
     src: url(./Assets//Nudista\ Bold.ttf)
 }
 
+/*//////////*/
+
 p {
     font-family: Barlow;
+}
+
+h1 {
+    font-family: Nudista;
 }
 
 h3 {
     color: #4b73b4 !important;
     font-weight: bold !important;
+    font-family: Nudista;
 }
 
 Button {
@@ -27,17 +36,38 @@ html {
     scrollbar-gutter:stable;
 }
 
+Form {
+    font-family: Barlow;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Home Page */
+
+.home-container {
+    scrollbar-gutter: stable both-edges;
+}
+
+.modal-header, .modal-body-div, .modal-button  {
+    font-family: Barlow !important;
+}
+
 .sunny {
     color: rgb(160, 160, 160);
 }
 
-.paddings {
-    padding-left: 1rem;
+/* Calendar */
+
+.calendar-row {
+    width: 50vw;
 }
 
-.list-row:hover {
-    background-color: #f4f4f4;
+.calendar-buttons {
+    font-size: 0.8rem !important;
 }
+
 .react-datepicker__day--highlighted,.react-datepicker__month-text--highlighted, .react-datepicker__quarter-text--highlighted, .react-datepicker__year-text--highlighted {
     background-color: #ffffff;
     color: black;
@@ -57,6 +87,73 @@ html {
 .react-datepicker__day--keyboard-selected {
     background-color: #ffffff;
     color: white;
+}
+
+/* Filter */
+
+.filter-row {
+    width: 50vw;
+}
+
+.venue-row {
+    width: 50vw;
+}
+.paddings {
+    padding-left: 1rem;
+}
+
+/* Listing */
+
+.list-row {
+    height: 20vh;
+    width: 50vw;
+    cursor: pointer;
+}
+
+.list-row:hover {
+    background-color: #f4f4f4;
+}
+
+.thumbnail-placeholder {
+    font-size: 7rem;
+    width: 100%;
+}
+
+.info-col {
+    border-left: solid 1px  #dee2e6;
+}
+
+.event-name {
+    font-family: Barlow;
+}
+
+.listing-font {
+    font-family: Barlow;
+}
+
+/* Map */
+
+.map-div {
+    width: 80%;
+    height: 800px;
+}
+
+.overlay {
+    display: none;
+    padding: 0.5rem;
+    font-family: Barlow;
+    border-radius: 5px;
+    width: 15vw;
+}
+
+.marker {
+    font-size: 2rem;
+}
+
+.overlay-button {
+    z-index: 10;
+    height: 1.3rem;
+    font-size: 0.8rem !important;
 }
 
 /* Media Queries*/

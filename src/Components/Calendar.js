@@ -4,20 +4,20 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 
 const Calendar = ({dates, setSelectedDate}) => {
 
-    const testing = useRef(null)
+    const calendarRef = useRef(null)
     const [startDate, setStartDate] = useState(new Date())
 
-    const testing2 = dates.map(i => new Date(Date.parse(i)))
+    const highlightedDates = dates.map(i => new Date(Date.parse(i)))
     
     return (
         <>
         <Container>
-            <Row className="px-0" style={{width:"50vw"}}>
+            <Row className="calendar-row px-0">
                 <Col className="px-0 w-25 ">
-                    <DatePicker calendarClassName="calendar" id="calendar" ref={testing} selected={startDate} onChange={(date) => setStartDate(date)} highlightDates={testing2} inline/>
+                    <DatePicker calendarClassName="calendar" id="calendar" ref={calendarRef} selected={startDate} onChange={(date) => setStartDate(date)} highlightDates={highlightedDates} inline/>
                     <div>
-                        <Button className="me-2" variant="outline-primary" style={{fontSize:"0.8rem",fontWeight:"bold"}} onClick={() => setSelectedDate(Date.parse(startDate.toDateString()))}>Filter</Button>
-                        <Button variant="outline-primary" style={{fontSize:"0.8rem",fontWeight:"bold"}} onClick={() => setSelectedDate("")}>Show All</Button>
+                        <Button className="calendar-buttons me-2 fw-bold" variant="outline-primary" onClick={() => setSelectedDate(Date.parse(startDate.toDateString()))}>Filter</Button>
+                        <Button className="calendar-buttons fw-bold" variant="outline-primary" onClick={() => setSelectedDate("")}>Show All</Button>
                     </div>
                 </Col>
             </Row>

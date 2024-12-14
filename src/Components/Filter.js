@@ -18,11 +18,11 @@ const Filter = ({dates, venues, setVenues, selectedDate, setSelectedDate, displa
     return (
         <>
         <Container className="d-flex flex-column align-items-center">
-            <Row className="filter-row mb-2 d-flex justify-content-start" style={{width:"50vw"}}>
+            <Row className="filter-row mb-2 d-flex justify-content-start" >
                 <Col className="px-0 d-flex justify-content-between gap-2">
                     <div>
-                        <Button className="me-2" style={{fontFamily:"Barlow",fontWeight:"bold"}} variant="outline-primary" onClick={() => setOpenDate(!openDate)}>Date</Button>
-                        <Button variant="outline-primary" style={{fontFamily:"Barlow",fontWeight:"bold"}} onClick={() => setOpenVenue(!openVenue)} >Venue</Button>
+                        <Button className="me-2 fw-bold" variant="outline-primary" onClick={() => setOpenDate(!openDate)}>Date</Button>
+                        <Button className="fw-bold" variant="outline-primary" onClick={() => setOpenVenue(!openVenue)} >Venue</Button>
                     </div>
                     <ButtonGroup>
                         <ToggleButton checked={display === "list"} value="list" type="checkbox" variant="outline-primary" onClick={() => setDisplay("list")}>
@@ -34,15 +34,15 @@ const Filter = ({dates, venues, setVenues, selectedDate, setSelectedDate, displa
                     </ButtonGroup>
                 </Col>
             </Row>
-            <Row className="venue-row" style={{width:"50vw"}}>
+            <Row className="venue-row">
              <Collapse in={openVenue}>
                 <Col className="px-0 w-50">
-                    <Form style={{fontFamily:"Barlow"}}>
+                    <Form>
                         <Form.Check className="venue-checkbox" id="test" onChange={handleCheck} inline value="Standard Time" label="Standard Time" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Sounds Good" label="Sounds Good" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="BSMT254" label="BSMT254" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Bambi's" label="Bambi's" name="group1" type="checkbox"/>
-                        <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Cafeteria" label="Cafeteria" name="group1" type="checkbox"/>
+                        <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="CAFETERIA" label="Cafeteria" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Other" label="Other" name="group1" type="checkbox"/>
                     </Form>
                 </Col>
