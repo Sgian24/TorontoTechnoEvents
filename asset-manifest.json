@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TorontoTechnoEvents/static/css/main.c24f0f30.css",
-    "main.js": "/TorontoTechnoEvents/static/js/main.741d51ef.js",
+    "main.css": "/TorontoTechnoEvents/static/css/main.76a21a9b.css",
+    "main.js": "/TorontoTechnoEvents/static/js/main.e113b83d.js",
     "static/media/Nudista Bold.ttf": "/TorontoTechnoEvents/static/media/Nudista Bold.a2cf4575f94c424e64f9.ttf",
     "static/media/Barlow-Light.otf": "/TorontoTechnoEvents/static/media/Barlow-Light.66a25bac83c871fc7e42.otf",
     "index.html": "/TorontoTechnoEvents/index.html",
-    "main.c24f0f30.css.map": "/TorontoTechnoEvents/static/css/main.c24f0f30.css.map",
-    "main.741d51ef.js.map": "/TorontoTechnoEvents/static/js/main.741d51ef.js.map"
+    "main.76a21a9b.css.map": "/TorontoTechnoEvents/static/css/main.76a21a9b.css.map",
+    "main.e113b83d.js.map": "/TorontoTechnoEvents/static/js/main.e113b83d.js.map"
   },
   "entrypoints": [
-    "static/css/main.c24f0f30.css",
-    "static/js/main.741d51ef.js"
+    "static/css/main.76a21a9b.css",
+    "static/js/main.e113b83d.js"
   ]
 }
