@@ -39,7 +39,7 @@ const Filter = ({dates, venues, setVenues, selectedDate, setSelectedDate, displa
                 <Col className="px-0 w-50">
                     <Form>
                         <Form.Check className="venue-checkbox" id="test" onChange={handleCheck} inline value="Standard Time" label="Standard Time" name="group1" type="checkbox"/>
-                        <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Sounds Good" label="Sounds Good" name="group1" type="checkbox"/>
+                        <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Coda" label="Coda" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="BSMT254" label="BSMT254" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="Bambi's" label="Bambi's" name="group1" type="checkbox"/>
                         <Form.Check className="venue-checkbox" onChange={handleCheck} inline value="CAFETERIA" label="Cafeteria" name="group1" type="checkbox"/>
